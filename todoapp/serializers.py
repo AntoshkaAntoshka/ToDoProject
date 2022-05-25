@@ -10,15 +10,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
-    project_authors = UserSerializer()
     class Meta:
         model = Project
         fields = '__all__'
 
 
 class TODOSerializer(serializers.HyperlinkedModelSerializer):
-    project = ProjectSerializer()
-    user = UserSerializer()
+    # project = ProjectSerializer()
+    # user = UserSerializer()
     class Meta:
         model = TODO
         fields = '__all__'

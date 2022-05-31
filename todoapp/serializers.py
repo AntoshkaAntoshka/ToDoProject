@@ -3,19 +3,19 @@ from .models import Project, TODO
 from userworkapp.models import User
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
 
-class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
 
 
-class TODOSerializer(serializers.HyperlinkedModelSerializer):
+class TODOSerializer(serializers.ModelSerializer):
     # project = ProjectSerializer()
     # user = UserSerializer()
     class Meta:

@@ -3,6 +3,8 @@ from .models import Project, TODO
 from userworkapp.models import User
 from .serializers import UserSerializer, ProjectSerializer, TODOSerializer
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework import mixins, viewsets
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 
 
 class AllLimitOffsetPagination(LimitOffsetPagination):
@@ -21,3 +23,9 @@ class UsersModelViewSet(ModelViewSet):
     serializer_class = UserSerializer
     pagination_class = AllLimitOffsetPagination
 
+
+class UsersCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    pagination_class = AllLimitOffsetPagination
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]

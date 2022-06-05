@@ -5,14 +5,21 @@ from .serializers import UserSerializer, ProjectSerializer, TODOSerializer
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import mixins, viewsets
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
-
+from .filters import ProjectFilterName
+from django_filters import rest_framework as filters
 
 class AllLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 2
 
+class ProjectLimitOffsetPagination(LimitOffsetPagination):
+    default_limit = 10
+
 class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    pagination_class = ProjectLimitOffsetPagination
+    filter_backends = (filters.DjangoFilterBackend, )
+    filterset_class = ProjectFilterName
 
 class TODOModelViewSet(ModelViewSet):
     queryset = TODO.objects.all()
@@ -29,3 +36,4 @@ class UsersCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixin
     serializer_class = UserSerializer
     pagination_class = AllLimitOffsetPagination
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+

@@ -29,6 +29,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
-    path('custom/users/', UsersCustomViewSet.as_view({'get': 'list'})),
-    path('custom/users/<int:pk>/', UsersCustomViewSet.as_view({'post': 'update'})),
+    # path('custom/users/', UsersCustomViewSet.as_view({'get': 'list'})),
+    # path('custom/users/<int:pk>/', UsersCustomViewSet.as_view({'post': 'update'})),
 ]

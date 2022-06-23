@@ -2,7 +2,7 @@ from urllib import response
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, TODO
 from userworkapp.models import User
-from .serializers import UserSerializer, ProjectSerializer, TODOSerializer
+from .serializers import TODOSerializerBase, UserSerializer, ProjectSerializer, TODOSerializer
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import mixins, viewsets, status
 from rest_framework.response import Response
@@ -39,6 +39,10 @@ class TODOModelViewSet(ModelViewSet):
         instance.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return TODOSerializer
+        return TODOSerializerBase
 
 
 class UsersModelViewSet(ModelViewSet):

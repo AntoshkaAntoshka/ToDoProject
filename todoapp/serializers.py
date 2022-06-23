@@ -15,9 +15,15 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class TODOSerializerBase(serializers.ModelSerializer):
+    class Meta:
+        model = TODO
+        fields = '__all__'
+        
+
 class TODOSerializer(serializers.ModelSerializer):
-    # project = ProjectSerializer()
-    # user = UserSerializer()
+    project = ProjectSerializer()
+    user = UserSerializer()
     class Meta:
         model = TODO
         fields = '__all__'

@@ -5,6 +5,8 @@ class User(models.Model):
     first_name = models.CharField('Firstname', max_length=64)
     last_name = models.CharField('Lastname', max_length=64)
     email = models.EmailField('E-mail', max_length=100, unique=True, blank=True)
+    is_staff = models.BooleanField('staff', default=False)
+    is_superuser = models.BooleanField('superuser', default=False)
 
     def __str__(self):
         return self.last_name

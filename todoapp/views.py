@@ -2,7 +2,7 @@ from urllib import response
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, TODO
 from userworkapp.models import User
-from .serializers import TODOSerializerBase, UserSerializer, ProjectSerializer, TODOSerializer
+from .serializers import TODOSerializerBase, UserSerializer, ProjectSerializer, TODOSerializer, UserSerializerNew
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework import mixins, viewsets, status
 from rest_framework.response import Response
@@ -56,4 +56,9 @@ class UsersCustomViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixin
     serializer_class = UserSerializer
     pagination_class = AllLimitOffsetPagination
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+
+    def get_serializer_class(self):
+        if self.request.version == '0.2':
+            return UserSerializerNew
+        return UserSerializer
 

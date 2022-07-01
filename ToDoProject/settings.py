@@ -37,11 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Other
+    'drf_yasg',
+    'django_filters',
     'rest_framework',
+    'rest_framework.authtoken',
+    # My
     'userworkapp',
     'todoapp',
-    'django_filters',
-    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [

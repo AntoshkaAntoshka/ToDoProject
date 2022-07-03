@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
+    'graphene_django',
     # My
     'userworkapp',
     'todoapp',
@@ -151,3 +152,5 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS':'rest_framework.versioning.QueryParameterVersioning',
 
 }
+
+GRAPHENE = {'SCHEMA': 'ToDoProject.schema.schema'}

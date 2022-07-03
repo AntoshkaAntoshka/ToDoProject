@@ -1,3 +1,4 @@
+from dataclasses import fields
 from rest_framework import serializers
 from .models import Project, TODO
 from userworkapp.models import User
@@ -6,8 +7,13 @@ from userworkapp.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('user_name', 'first_name', 'last_name', 'email',)
 
+class UserSerializerNew(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
